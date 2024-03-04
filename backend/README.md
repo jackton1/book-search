@@ -1,5 +1,5 @@
 # blogs
-Sample Blog application
+Sample books application using [Google Books API](https://developers.google.com/books/docs/overview).
 
 
 ## Installation
@@ -7,19 +7,13 @@ Sample Blog application
 Run:
 
 ```bash
-make install
+pip install pipenv
+pipenv install
 ```
 
 
 ## Running the application locally
 
 ```bash
-make run
-```
-
-
-## Deploying the application to [deta.sh](https://deta.sh)
-
-```bash
-make deploy
+pipenv run uvicorn main:app --reload
 ```
