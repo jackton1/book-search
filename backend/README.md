@@ -1,4 +1,4 @@
-# blogs
+# books-search - (Backend)
 Sample books application using [Google Books API](https://developers.google.com/books/docs/overview).
 
 
