@@ -87,7 +87,7 @@ export default function Books() {
                 setFetchingMore(false);
                 setPage(0);
               }}
-              className="block p-4 ps-10 w-full text-md text-gray-900 border border-gray-300 rounded-xl bg-white focus:outline-none focus:bg-gray-50 shadow-lg"
+              className="block p-4 ps-10 w-full text-md text-gray-900 border border-gray-300 rounded-xl bg-white focus:ring-0 focus:ring-offset-0 focus:bg-gray-50 shadow-lg"
               placeholder="Search for books and authors..."
               required
             />
