@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 const AuthNavigationLink = ({ message, href, linkText, postMessage }: { message: string; href: string; linkText: string, postMessage?: string }) => (
     <div className="text-center text-sm text-gray-600">

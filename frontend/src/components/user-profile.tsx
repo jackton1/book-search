@@ -11,7 +11,11 @@ const getInitials = (name: string) => {
 };
 
 const UserProfile = ({ toggleDropdown, isDropdownOpen }: { toggleDropdown: () => void, isDropdownOpen: boolean }) => {
-  const { data: session } = useSession();
+  const { data: session, status, update } = useSession();
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -32,7 +36,7 @@ const UserProfile = ({ toggleDropdown, isDropdownOpen }: { toggleDropdown: () =>
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
                 <Link
-                  href="/api/auth/signout"
+                  href="/logout"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   Sign out
@@ -42,7 +46,6 @@ const UserProfile = ({ toggleDropdown, isDropdownOpen }: { toggleDropdown: () =>
           </div>
         </div>
       )}
-      {!session && <div>Loading...</div>}
     </div>
   )
 }

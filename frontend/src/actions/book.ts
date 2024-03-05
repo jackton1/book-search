@@ -1,5 +1,5 @@
 'use server';
-import { auth, config } from "@/auth";
+import { auth } from "@/auth";
 import { searchBooks } from "@/lib/book";
 
 
