@@ -19,7 +19,7 @@ const initialState = {
 export default function Books() {
     const [search, setSearch] = useState('');
     const [state, formAction] = useFormState(getBooks, initialState);
-    const [page, setPage] = useState(2);
+    const [page, setPage] = useState(0);
     const [totalBooks, setTotalBooks] = useState(0);
     const [books, setData] = useState<BookVolume[]>([]);
     const [fetchingMore, setFetchingMore] = useState(false);
@@ -30,9 +30,10 @@ export default function Books() {
                 if (fetchingMore) {
                     setData([...books, ...state.data.items]);
                     setPage(page + 1);
+                    setFetchingMore(false);
                 } else {
                     setData(state.data.items);
-                    setPage(2);
+                    setPage(0);
                     if (!state.data.items.length) {
                         toast.error('No books found.', { icon: '🚨' });
                     }
