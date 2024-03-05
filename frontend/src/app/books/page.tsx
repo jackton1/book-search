@@ -50,7 +50,7 @@ export default function Books() {
     }, [state]);
 
     return (
-        <div>
+        <>
             <NavigationBar />
             <div className="flex flex-col items-center justify-center w-full bg-gray-100" style={{ minHeight: 'calc(100vh - 64px)' }}>
                 <form
@@ -132,6 +132,6 @@ export default function Books() {
                   </>
                 )}
             </div>
-        </div>
+        </>
     );
 }
