@@ -29,8 +29,6 @@ export const config = {
                     body.append('username', credentials.username as string)
                     body.append('password', credentials.password as string)
 
-                    console.log("API_URL: ", process.env.API_URL)
-
                     // Send the credentials to the Backend API
                     const res = await fetch(process.env.API_URL + '/login', {
                         method: 'POST',
