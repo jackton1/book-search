@@ -24,7 +24,7 @@ export default function Login() {
     useEffect(() => {
         if (state.success && state.redirectTo) {
             toast.success(state.message, { icon: '👋', duration: 4000 });
-            router.push(state.redirectTo);
+            window.location.assign(state.redirectTo)
         } else if (!state.success && state.message) {
             toast.error(state.message, { icon: '🚨' });
         } else if (state.success) {
