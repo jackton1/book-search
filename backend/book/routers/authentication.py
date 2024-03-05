@@ -12,8 +12,8 @@ router = APIRouter(tags=["Authentication"])
 
 @router.post("/login")
 def login(
-    login_credential: Annotated[OAuth2PasswordRequestForm, Depends()],
-    db: Annotated[Session, Depends(database.get_db)],
+        login_credential: Annotated[OAuth2PasswordRequestForm, Depends()],
+        db: Annotated[Session, Depends(database.get_db)],
 ):
     user = (
         db.query(models.User)
