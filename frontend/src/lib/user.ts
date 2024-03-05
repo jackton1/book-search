@@ -26,8 +26,6 @@ interface ChangePasswordKey {
 }
 
 export async function createUser(user: CreateUserData): Promise<User> {
-    const res = await axios.get('https://api.ipify.org?format=json');
-    console.log("My IP is: ", res.data.ip);
     const response = await api.post('/user/', {...user}, { headers: { 'Content-Type': 'application/json' } });
     return handleError(response);
 }

@@ -6,7 +6,6 @@ export const addNewUser = async (_: any, formData: FormData)=> {
     let name = formData.get('name') as string;
     let email = formData.get('email') as string;
     let password = formData.get('password') as string;
-    console.log("API_URL: ", process.env.API_URL);
     try {
         await createUser({ name, email, password });
         return { success: true, message: 'Account created successfully. Please sign in.'}
