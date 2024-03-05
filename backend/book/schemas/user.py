@@ -17,3 +17,18 @@ class GetUser(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class ChangePassword(BaseModel):
+    key: str
+    password: str
+
+    class Config:
+        from_attributes = True
+
+
+class GetChangePasswordKey(BaseModel):
+    key: str
+
+    class Config:
+        from_attributes = True

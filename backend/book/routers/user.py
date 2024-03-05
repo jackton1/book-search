@@ -23,3 +23,16 @@ def get_current_user(
     current_user: schemas.User = Depends(get_current_user),
 ):
     return current_user
+
+
+@router.patch("/change-password", response_model=schemas.GetUser)
+def update_password(
+    data: schemas.ChangePassword,
+    db: Session = Depends(database.get_db)
+):
+    return actions.user.update_password(data.key, data.password, db)
+
+
+@router.get("/get-change-password-key", response_model=schemas.GetChangePasswordKey)
+def get_change_password_key(email: str, db: Session = Depends(database.get_db)):
+    return actions.user.get_change_password_key(email, db)

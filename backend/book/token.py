@@ -30,3 +30,40 @@ def verify_token(token: str, credentials_exception: HTTPException) -> schemas.To
         raise credentials_exception
 
     return token_data
+
+
+def create_change_password_token(id_: int) -> str:
+    expiration_time = datetime.utcnow() + timedelta(minutes=30)  # Token expires in 30 minutes
+    payload = {
+        "user_id": id_,  # Assuming the User model has an id attribute
+        "exp": expiration_time
+    }
+    token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+
+    return token
+
+
+def decode_change_password_token(token: str) -> int:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id = payload.get("user_id")
+        expiration = payload.get("exp")
+        if user_id is None:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid token",
+            )
+        # compare expiration time with current time
+        expiration_time = datetime.utcfromtimestamp(expiration)
+        if expiration_time < datetime.utcnow():
+            raise HTTPException(
+                status_code=400,
+                detail="Token expired",
+            )
+    except JWTError:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid token",
+        )
+
+    return user_id

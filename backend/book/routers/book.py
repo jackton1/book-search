@@ -14,8 +14,8 @@ router = APIRouter(tags=["Books"], prefix="/book")
 def search(
     q: str,
     page: int = 0,
-    # db: Session = Depends(database.get_db),
-    # current_user: schemas.User = Depends(get_current_user),
+    db: Session = Depends(database.get_db),
+    current_user: schemas.User = Depends(get_current_user),
 ):
     return actions.book.get_all(q=q, page=page)
 

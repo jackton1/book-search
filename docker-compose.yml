@@ -5,19 +5,37 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    environment:
+      - SQLALCHEMY_DATABASE_URL=postgresql://testuser:testpassword@db:5432/testdb
     env_file:
       - .env.backend
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      - db
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - NEXT_PUBLIC_API_URL=http://localhost:8000/api
+        - NEXT_PUBLIC_API_URL=http://localhost:8000
     environment:
-      - API_URL=http://backend:8000/api
+      - API_URL=http://backend:8000
       - NEXT_AUTH_URL=http://frontend:3000
     ports:
       - "3000:3000"
+
+  db:
+    image: postgres:16.2-alpine
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: testpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+    db-data:

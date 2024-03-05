@@ -92,7 +92,9 @@ export const config = {
         },
         authorized({ request, auth }) {
             const { pathname } = request.nextUrl
-            if (pathname === "/books") return !!auth
+            if (pathname === "/books") {
+                return !!auth && !!auth.accessToken
+            }
             return true
         },
     },

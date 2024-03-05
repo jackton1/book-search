@@ -10,6 +10,14 @@ ENV PIPENV_VENV_IN_PROJECT=1
 
 WORKDIR /usr/src/app
 
+# build dependencies for postgres client
+RUN apt-get -qq -y update && \
+    apt-get -qq -y install \
+        build-essential \
+        libpq-dev \
+        postgresql-client \
+        postgresql-common
+
 # Install pipenv
 RUN pip install pipenv==2023.12.1
 
@@ -26,4 +34,5 @@ COPY . /usr/src/app
 EXPOSE 8000
 
 # Running the application using the Python executable inside the virtual environment
-CMD ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0"]
+CMD ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
