@@ -12,7 +12,7 @@ export const api: AxiosInstance = axios.create({
 });
 
 export const setAuthHeader = (accessToken: string) => ({
-    headers: { Authorization: `Bearer ${accessToken}` }
+    headers: {Authorization: `Bearer ${accessToken}`}
 });
 
 export const handleError = (response: AxiosResponse) => {

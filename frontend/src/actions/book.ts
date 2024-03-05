@@ -20,8 +20,8 @@ export const getBooks = async (prevState: any, formData: FormData) => {
     try {
         const data = await searchBooks({q: search, page, accessToken: session.accessToken});
 
-        return { success: true, data }
+        return {success: true, data}
     } catch (error: any) {
-        return { success: false, message: error.message }
+        return {success: false, message: error.message}
     }
 }

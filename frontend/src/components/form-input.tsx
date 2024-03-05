@@ -1,4 +1,10 @@
-const FormInput = ({ id, name, type, placeholder, label }: { id: string; name: string; type: string; placeholder: string; label: string }) => (
+const FormInput = ({id, name, type, placeholder, label}: {
+    id: string;
+    name: string;
+    type: string;
+    placeholder: string;
+    label: string
+}) => (
     <div>
         <label htmlFor={id} className="block text-xs text-gray-600 uppercase">
             {label}

@@ -22,10 +22,10 @@ export default function ChangePassword() {
 
     useEffect(() => {
         if (state.success && state.key) {
-            toast.success(state.message, { icon: '✅' });
+            toast.success(state.message, {icon: '✅'});
             redirect(`/change-password/${state.key}`);
         } else if (state.message) {
-            toast.error(state.message, { icon: '🚨' });
+            toast.error(state.message, {icon: '🚨'});
         }
     }, [state]);
 
@@ -40,13 +40,14 @@ export default function ChangePassword() {
                 className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
                 action={formAction}
             >
-                <FormInput id="email" name="email" type="email" placeholder="user@acme.com" label="Email Address" />
+                <FormInput id="email" name="email" type="email" placeholder="user@acme.com" label="Email Address"/>
                 <SubmitButton
                     text="Change Password"
                     loadingText="Changing password..."
                     className="flex h-10 w-full items-center justify-center rounded-md border bg-blue-500 text-sm text-white transition-all focus:outline-none"
                 />
-                <AuthNavigationLink message="Remember your password?" href="/login" linkText="Sign in" postMessage="to continue." />
+                <AuthNavigationLink message="Remember your password?" href="/login" linkText="Sign in"
+                                    postMessage="to continue."/>
             </form>
         </AuthLayout>
     );

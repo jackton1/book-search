@@ -31,14 +31,14 @@ export const config = {
                     // Send the credentials to the Backend API
                     const res = await fetch(process.env.API_URL + '/login', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                         body
                     })
 
                     const data = await res.json()
 
                     if (res.ok) {
-                        const { access_token: accessToken } = data
+                        const {access_token: accessToken} = data
 
                         // Get the user from the API
                         const userRes = await fetch(process.env.API_URL + '/user/', {
@@ -70,7 +70,7 @@ export const config = {
         updateAge: 50 * 60,    // 50 minutes
     },
     callbacks: {
-        async jwt({ token, user }: { token: any, user: any }) {
+        async jwt({token, user}: { token: any, user: any }) {
             if (user) {
                 // Add the access token to the token object
                 token.accessToken = user.accessToken;
@@ -84,13 +84,13 @@ export const config = {
 
             return token
         },
-        async session({ session, token }: { session: any, token: any }) {
+        async session({session, token}: { session: any, token: any }) {
             // Add the access token to the session
             session.accessToken = token.accessToken;
             return session;
         },
-        authorized({ request, auth }) {
-            const { pathname } = request.nextUrl
+        authorized({request, auth}) {
+            const {pathname} = request.nextUrl
             if (pathname === "/books") {
                 return !!auth && !!auth.accessToken
             }
@@ -110,4 +110,4 @@ export const config = {
     debug: process.env.NODE_ENV !== "production",
 } satisfies NextAuthConfig;
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config);
+export const {handlers, auth, signIn, signOut} = NextAuth(config);

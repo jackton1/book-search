@@ -5,28 +5,28 @@ import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: "Book Search",
-  description: "Search for books and authors using the Google Books API",
+    title: "Book Search",
+    description: "Search for books and authors using the Google Books API",
 };
 
 export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                             children,
+                                         }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  const session = await auth();
+    const session = await auth();
 
-  return (
-    <html lang="en">
-      <body className={`${inter.className} `}>
+    return (
+        <html lang="en">
+        <body className={`${inter.className} `}>
         <Toaster
             position="top-center"
             reverseOrder={false}
             toastOptions={{
-              className: "text-sm text-black bg-white dark:bg-gray-900 dark:text-white p-4 border-2 border-gray-300 shadow-lg",
+                className: "text-sm text-black bg-white dark:bg-gray-900 dark:text-white p-4 border-2 border-gray-300 shadow-lg",
             }}
         />
         <SessionProvider session={session} basePath="/api/auth">
@@ -41,7 +41,7 @@ export default async function RootLayout({
                 </div>
             </footer>
         </SessionProvider>
-      </body>
-    </html>
-  );
+        </body>
+        </html>
+    );
 }
