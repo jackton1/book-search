@@ -11,8 +11,8 @@ ENV PIPENV_VENV_IN_PROJECT=1
 WORKDIR /usr/src/app
 
 # build dependencies for postgres client
-RUN apt-get -qq -y update && \
-    apt-get -qq -y install \
+RUN apt-get update && \
+    apt-get -y install \
         build-essential \
         libpq-dev \
         postgresql-client \
