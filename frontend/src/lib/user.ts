@@ -1,5 +1,4 @@
 import { api, handleError } from "@/lib/api";
-import axios from "axios";
 
 interface CreateUserData {
     name: string;

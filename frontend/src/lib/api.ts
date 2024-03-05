@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-const API_URL: string = process.env.NEXT_PUBLIC_API_URL as string;
+const API_URL: string = process.env.API_URL as string;
 
 export interface AuthToken {
     accessToken: string;
