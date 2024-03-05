@@ -82,6 +82,7 @@ export default function Books() {
                           value={search}
                           onChange={(e) => {
                             setSearch(e.target.value);
+                            setFetchingMore(false);
                             setPage(0);
                           }}
                           className="block p-4 ps-10 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 shadow-lg"
