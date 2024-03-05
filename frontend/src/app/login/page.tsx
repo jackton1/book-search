@@ -5,7 +5,7 @@ import AuthLayout from "@/components/auth-layout";
 import AuthNavigationLink from "@/components/auth-navigation-link";
 import FormInput from "@/components/form-input";
 import SubmitButton from "@/components/submit-button";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
@@ -18,12 +18,13 @@ const initialState = {
 }
 
 export default function Login() {
+  const router = useRouter();
   const [state, formAction] = useFormState(loginUser, initialState);
 
     useEffect(() => {
         if (state.success && state.redirectTo) {
             toast.success(state.message, { icon: '👋', duration: 4000 });
-            return redirect(state.redirectTo);
+            router.push(state.redirectTo);
         } else if (!state.success && state.message) {
             toast.error(state.message, { icon: '🚨' });
         } else if (state.success) {
