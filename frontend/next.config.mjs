@@ -4,7 +4,9 @@ const nextConfig = {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || "MVNeg7uDpYjgY0yTXOpr/VCzT0U8sXkKWq6ZIufQgUY=",
   },
   images: {
-    domains: ["books.google.com"],
+    remotePatterns: [{
+      hostname: "books.google.com",
+    }],
   },
   redirects: async () => {
     return [

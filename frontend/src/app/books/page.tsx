@@ -28,9 +28,9 @@ export default function Books() {
         if (state.success) {
             if (state.data) {
                 if (fetchingMore) {
-                    setData([...books, ...state.data.items]);
-                    setPage(page + 1);
-                    setFetchingMore(false);
+                    const existingBookIds = books.map((book) => book.id);
+                    const newBooks = state.data.items.filter((book) => !existingBookIds.includes(book.id));
+                    setData([...books, ...newBooks]);
                 } else {
                     setData(state.data.items);
                     setPage(0);
@@ -39,6 +39,9 @@ export default function Books() {
                     }
                 }
                 setTotalBooks(state.data.totalItems);
+            } else {
+                setData([]);
+                setTotalBooks(0);
             }
         } else if (state.message) {
             toast.error(state.message, { icon: '🚨' });
@@ -55,6 +58,9 @@ export default function Books() {
                 <form
                   className="w-2/5 m-5"
                   action={() => {
+                    if (!search) {
+                      return;
+                    }
                     const formData = new FormData();
                     formData.append('search', search);
                     formData.append('page', page.toString());
@@ -76,7 +82,10 @@ export default function Books() {
                           id="search"
                           name="search"
                           value={search}
-                          onChange={(e) => setSearch(e.target.value)}
+                          onChange={(e) => {
+                            setSearch(e.target.value);
+                            setPage(0);
+                          }}
                           className="block p-4 ps-10 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 shadow-lg"
                           placeholder="Search for books and authors..."
                           required
@@ -102,9 +111,14 @@ export default function Books() {
                       <div className="m-10 flex justify-center">
                           <form
                             action={() => {
+                                if (!search) {
+                                    return;
+                                }
                                 const formData = new FormData();
                                 formData.append('search', search);
-                                formData.append('page', page.toString());
+                                const newPage = page + 1;
+                                formData.append('page', newPage.toString());
+                                setPage(newPage);
                                 setFetchingMore(true);
                                 formAction(formData);
                             }}
