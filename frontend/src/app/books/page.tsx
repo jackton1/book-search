@@ -28,9 +28,7 @@ export default function Books() {
         if (state.success) {
             if (state.data) {
                 if (fetchingMore) {
-                    const existingBookIds = books.map((book) => book.id);
-                    const newBooks = state.data.items.filter((book) => !existingBookIds.includes(book.id));
-                    setData([...books, ...newBooks]);
+                    setData([...books, ...state.data.items]);
                 } else {
                     setData(state.data.items);
                     setPage(0);
