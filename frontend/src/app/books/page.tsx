@@ -1,7 +1,7 @@
 "use client";
 import { getBooks } from "@/actions/book";
 import BookList from "@/components/book-list";
-import Navigation from "@/components/navigation";
+import NavigationBar from "@/components/navigation-bar";
 import SubmitButton from "@/components/submit-button";
 import { BookVolume } from "@/lib/book";
 import { redirect } from "next/navigation";
@@ -19,7 +19,7 @@ const initialState = {
 export default function Books() {
     const [search, setSearch] = useState('');
     const [state, formAction] = useFormState(getBooks, initialState);
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(2);
     const [totalBooks, setTotalBooks] = useState(0);
     const [books, setData] = useState<BookVolume[]>([]);
     const [fetchingMore, setFetchingMore] = useState(false);
@@ -32,7 +32,7 @@ export default function Books() {
                     setPage(page + 1);
                 } else {
                     setData(state.data.items);
-                    setPage(1);
+                    setPage(2);
                     if (!state.data.items.length) {
                         toast.error('No books found.', { icon: '🚨' });
                     }
@@ -49,7 +49,7 @@ export default function Books() {
 
     return (
         <div>
-            <Navigation />
+            <NavigationBar />
             <div className="flex flex-col items-center justify-center w-full bg-gray-100" style={{ minHeight: 'calc(100vh - 64px)' }}>
                 <form
                   className="w-2/5 m-5"
@@ -76,7 +76,7 @@ export default function Books() {
                           name="search"
                           value={search}
                           onChange={(e) => setSearch(e.target.value)}
-                          className="block p-4 ps-10 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                          className="block p-4 ps-10 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 shadow-lg"
                           placeholder="Search for books and authors..."
                           required
                         />

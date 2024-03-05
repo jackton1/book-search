@@ -47,6 +47,7 @@ export default function Login() {
             className="flex h-10 w-full items-center justify-center rounded-md border bg-blue-500 text-sm text-white transition-all focus:outline-none"
           />
           <AuthNavigationLink message="Don't have an account?" href="/register" linkText="Sign up" postMessage="for free." />
+          <AuthNavigationLink message="Forgot your password?" href="/change-password" linkText="Reset password" postMessage="." />
         </form>
       </AuthLayout>
   );

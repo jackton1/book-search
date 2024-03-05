@@ -29,6 +29,8 @@ export const config = {
                     body.append('username', credentials.username as string)
                     body.append('password', credentials.password as string)
 
+                    console.log("API_URL: ", process.env.API_URL)
+
                     // Send the credentials to the Backend API
                     const res = await fetch(process.env.API_URL + '/login', {
                         method: 'POST',
@@ -92,7 +94,9 @@ export const config = {
         },
         authorized({ request, auth }) {
             const { pathname } = request.nextUrl
-            if (pathname === "/books") return !!auth
+            if (pathname === "/books") {
+                return !!auth && !!auth.accessToken
+            }
             return true
         },
     },

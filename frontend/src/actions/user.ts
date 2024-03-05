@@ -1,14 +1,36 @@
 'use server';
 import { signIn, signOut } from "@/auth";
-import { createUser } from "@/lib/user";
+import { createUser, setPassword, getChangePasswordKey } from "@/lib/user";
 
 export const addNewUser = async (_: any, formData: FormData)=> {
     let name = formData.get('name') as string;
     let email = formData.get('email') as string;
     let password = formData.get('password') as string;
+    console.log("API_URL: ", process.env.API_URL);
     try {
         await createUser({ name, email, password });
         return { success: true, message: 'Account created successfully. Please sign in.'}
+    } catch (error: any) {
+        return { success: false, message: error.message }
+    }
+}
+
+export const changePassword = async (_: any, formData: FormData) => {
+    let key = formData.get('key') as string;
+    let password = formData.get('password') as string;
+    try {
+        await setPassword({ key, password });
+        return { success: true, message: 'Password changed successfully. Please sign in.'}
+    } catch (error: any) {
+        return { success: false, message: error.message }
+    }
+}
+
+export const retrieveChangePasswordKey = async (_: any, formData: FormData) => {
+    let email = formData.get('email') as string;
+    try {
+        const response = await getChangePasswordKey({ email });
+        return { success: true, key: response.key, message: 'Your account has been verified. Please enter your new password.'}
     } catch (error: any) {
         return { success: false, message: error.message }
     }

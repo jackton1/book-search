@@ -12,6 +12,7 @@ python-jose = "*"
 python-multipart = "*"
 bcrypt = "*"
 requests = "*"
+psycopg2 = "*"
 
 [dev-packages]
 

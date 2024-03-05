@@ -16,7 +16,7 @@ const initialState = {
     message: '',
 }
 
-export default function Login() {
+export default function Register() {
     const [state, formAction] = useFormState(addNewUser, initialState);
 
     useEffect(() => {
