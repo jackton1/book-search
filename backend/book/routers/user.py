@@ -19,16 +19,16 @@ def create_user(user: schemas.User, db: Session = Depends(database.get_db)):
 
 @router.get("/", response_model=schemas.GetUser)
 def get_current_user(
-        db: Session = Depends(database.get_db),
-        current_user: schemas.User = Depends(get_current_user),
+    db: Session = Depends(database.get_db),
+    current_user: schemas.User = Depends(get_current_user),
 ):
     return current_user
 
 
 @router.patch("/change-password", response_model=schemas.GetUser)
 def update_password(
-        data: schemas.ChangePassword,
-        db: Session = Depends(database.get_db)
+    data: schemas.ChangePassword,
+    db: Session = Depends(database.get_db)
 ):
     return actions.user.update_password(data.key, data.password, db)
 
