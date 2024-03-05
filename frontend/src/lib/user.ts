@@ -25,16 +25,16 @@ interface ChangePasswordKey {
 }
 
 export async function createUser(user: CreateUserData): Promise<User> {
-    const response = await api.post('/user/', {...user}, { headers: { 'Content-Type': 'application/json' } });
+    const response = await api.post('/user/', {...user}, {headers: {'Content-Type': 'application/json'}});
     return handleError(response);
 }
 
 export async function setPassword(user: SetPasswordUserData): Promise<User> {
-    const response = await api.patch('/user/change-password', user, { headers: { 'Content-Type': 'application/json' } });
+    const response = await api.patch('/user/change-password', user, {headers: {'Content-Type': 'application/json'}});
     return handleError(response);
 }
 
 export async function getChangePasswordKey(user: GetChangePasswordKeyData): Promise<ChangePasswordKey> {
-    const response = await api.get('/user/get-change-password-key', { params: user });
+    const response = await api.get('/user/get-change-password-key', {params: user});
     return handleError(response);
 }

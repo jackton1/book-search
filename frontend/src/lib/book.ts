@@ -143,14 +143,14 @@ interface BookData extends AuthToken {
     id: string;
 }
 
-export async function searchBooks({ q, page, accessToken }: BookSearchData): Promise<BookSearchResponse> {
-    const params = new URLSearchParams({ q, page });
+export async function searchBooks({q, page, accessToken}: BookSearchData): Promise<BookSearchResponse> {
+    const params = new URLSearchParams({q, page});
     const response = await api.get(`/book/search?${params.toString()}`, setAuthHeader(accessToken));
     return handleError(response);
 }
 
 
-export async function get({ id, accessToken }: BookData): Promise<BookVolume> {
+export async function get({id, accessToken}: BookData): Promise<BookVolume> {
     const response = await api.get(`/book/${id}`, setAuthHeader(accessToken));
     return handleError(response);
 }
