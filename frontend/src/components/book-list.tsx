@@ -1,11 +1,11 @@
 'use client';
 
 import { BookVolume } from "@/lib/book";
-import Tooltip from "rc-tooltip";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Tooltip from "rc-tooltip";
 import { useFormStatus } from "react-dom";
-import 'rc-tooltip/assets/bootstrap.css';
+import "rc-tooltip/assets/bootstrap.css";
 
 function truncateDescription(description: string, wordLimit: number) {
   const words = description.split(' ');

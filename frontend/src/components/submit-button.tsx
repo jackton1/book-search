@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormStatus } from 'react-dom';
+import { useFormStatus } from "react-dom";
 
 const SubmitButton = ({ text, loadingText, className }: { text: string; loadingText: string; className?: string }) => {
   const { pending } = useFormStatus();

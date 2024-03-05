@@ -1,6 +1,6 @@
 'use server';
 import { signIn, signOut } from "@/auth";
-import { createUser, setPassword, getChangePasswordKey } from "@/lib/user";
+import { createUser, getChangePasswordKey, setPassword } from "@/lib/user";
 
 export const addNewUser = async (_: any, formData: FormData)=> {
     let name = formData.get('name') as string;

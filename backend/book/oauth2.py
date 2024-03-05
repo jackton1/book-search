@@ -4,7 +4,6 @@ from fastapi.security import OAuth2PasswordBearer
 from . import actions, database
 from .token import verify_token
 
-
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
