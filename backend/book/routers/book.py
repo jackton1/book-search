@@ -10,10 +10,10 @@ router = APIRouter(tags=["Books"], prefix="/book")
 
 @router.get("/search", response_model=schemas.BookSearchResponse)
 def search(
-        q: str,
-        page: int = 0,
-        db: Session = Depends(database.get_db),
-        current_user: schemas.User = Depends(get_current_user),
+    q: str,
+    page: int = 0,
+    db: Session = Depends(database.get_db),
+    current_user: schemas.User = Depends(get_current_user),
 ):
     return actions.book.get_all(q=q, page=page)
 
@@ -24,8 +24,8 @@ def search(
     response_model=schemas.BookVolume,
 )
 def get(
-        volume_id: str,
-        db: Session = Depends(database.get_db),
-        current_user: schemas.User = Depends(get_current_user),
+    volume_id: str,
+    db: Session = Depends(database.get_db),
+    current_user: schemas.User = Depends(get_current_user),
 ):
     return actions.book.get(volume_id=volume_id)
