@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - SQLALCHEMY_DATABASE_URL=postgresql://testuser:testpassword@db:5432/testdb
+    command: ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
     env_file:
       - .env.backend
     ports:

@@ -1,19 +1,23 @@
-FROM node:20
+# Use the official Node.js runtime as a base image
+FROM node:20-alpine as builder
 
-ARG NEXT_PUBLIC_API_URL
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+# Copying package.json and yarn.lock to the working directory
+COPY package.json yarn.lock /usr/src/app/
 
-WORKDIR /app
-
-COPY package.json yarn.lock /app/
-
+# Installing project dependencies
 RUN yarn install
 
-COPY . /app/
+# Copying the application source code
+COPY . /usr/src/app
 
+# Building the application
 RUN yarn build
 
+# Exposing the port the app runs on
 EXPOSE 3000
 
+# Running the application using the Node.js executable
 CMD ["yarn", "start"]
