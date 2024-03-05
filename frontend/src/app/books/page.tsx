@@ -35,8 +35,8 @@ export default function Books() {
                     if (!state.data.items.length) {
                         toast.error('No books found.', { icon: '🚨' });
                     }
+                    setTotalBooks(state.data.totalItems);
                 }
-                setTotalBooks(state.data.totalItems);
             } else {
                 setData([]);
                 setTotalBooks(0);
