@@ -5,7 +5,6 @@ import AuthLayout from "@/components/auth-layout";
 import AuthNavigationLink from "@/components/auth-navigation-link";
 import FormInput from "@/components/form-input";
 import SubmitButton from "@/components/submit-button";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
@@ -18,7 +17,6 @@ const initialState = {
 }
 
 export default function Login() {
-  const router = useRouter();
   const [state, formAction] = useFormState(loginUser, initialState);
 
     useEffect(() => {
