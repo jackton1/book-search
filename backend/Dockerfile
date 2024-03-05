@@ -10,13 +10,11 @@ ENV PIPENV_VENV_IN_PROJECT=1
 
 WORKDIR /usr/src/app
 
-# build dependencies for postgres client
+# build dependencies for psycopg2
 RUN apt-get update && \
     apt-get -y install \
         build-essential \
-        libpq-dev \
-        postgresql-client \
-        postgresql-common
+        libpq-dev
 
 # Install pipenv
 RUN pip install pipenv==2023.12.1
