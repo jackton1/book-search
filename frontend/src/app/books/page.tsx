@@ -87,7 +87,7 @@ export default function Books() {
                 setFetchingMore(false);
                 setPage(0);
               }}
-              className="block p-4 ps-10 w-full text-md text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 shadow-lg"
+              className="block p-4 ps-10 w-full text-md text-gray-900 border border-gray-300 rounded-xl bg-white focus:outline-none focus:bg-gray-50 shadow-lg"
               placeholder="Search for books and authors..."
               required
             />
@@ -110,28 +110,30 @@ export default function Books() {
                 </p>
               </div>
             </div>
-            <div className="m-10 flex justify-center">
-              <form
-                action={() => {
-                  if (!search) {
-                    return;
-                  }
-                  const formData = new FormData();
-                  formData.append("search", search);
-                  const newPage = page + 1;
-                  formData.append("page", newPage.toString());
-                  setPage(newPage);
-                  setFetchingMore(true);
-                  formAction(formData);
-                }}
-              >
-                <SubmitButton
-                  text="View more Books"
-                  loadingText="Loading..."
-                  className="relative inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-2 pl-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 "
-                />
-              </form>
-            </div>
+            {totalBooks > 20 && (
+              <div className="m-10 flex justify-center">
+                <form
+                  action={() => {
+                    if (!search) {
+                      return;
+                    }
+                    const formData = new FormData();
+                    formData.append("search", search);
+                    const newPage = page + 1;
+                    formData.append("page", newPage.toString());
+                    setPage(newPage);
+                    setFetchingMore(true);
+                    formAction(formData);
+                  }}
+                >
+                  <SubmitButton
+                    text="View more Books"
+                    loadingText="Loading..."
+                    className="relative inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-2 pl-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 "
+                  />
+                </form>
+              </div>
+            )}
           </>
         )}
       </div>

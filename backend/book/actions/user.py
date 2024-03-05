@@ -14,7 +14,7 @@ def get_user_by_email(email: str, db: Session):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"User with the id {id} is not found",
+            detail=f"User with the email {email} is not found",
         )
 
     return user
