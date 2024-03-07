@@ -26,7 +26,7 @@ BookSphere is a web application that allows users to search for books using keyw
 
 ## Preview
 
-![BookSphere Preview](https://github-production-user-asset-6210df.s3.amazonaws.com/17484350/309993124-d05fa581-a09a-43f4-a834-7d6e30ae11b7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240305%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240305T052730Z&X-Amz-Expires=300&X-Amz-Signature=967743b59b01bcd89beb2ed8d70870441e8d1792e0b4c51500e6aa1664dc17d6&X-Amz-SignedHeaders=host&actor_id=17484350&key_id=0&repo_id=767223389)
+![BookSphere Preview](https://github.com/jackton1/book-search/assets/17484350/f61aa45a-2903-4ea4-8cbb-803554514782)
 
 
 
