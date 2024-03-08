@@ -190,6 +190,7 @@ yarn-error.log*
 .envrc
 /.envrc
 .env.backend
+.env.frontend
 
 # vercel
 .vercel
