@@ -33,11 +33,13 @@ BookSphere is a web application that allows users to search for books using keyw
 ## Getting Started
 
 1. Clone this repository.
-2. Create a `.env.backend` file by copying the `.env.backend.example` file 
-3. Replace the `GOOGLE_BOOKS_API_KEY` with your own Google Books API key. You can obtain one from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
-4. Generate a secret key and replace the `SECRET_KEY` with the generated key.
-5. Install [Docker Desktop](https://www.docker.com/products/docker-desktop) if you haven't already.
-6. Run `docker-compose up` to start the application.
-7. Visit `http://localhost:3000` to access the application.
-8. Enjoy searching for books!
+2. Create a `.env.backend` file by copying the `.env.backend.example` file.
+3. Set the `GOOGLE_BOOKS_API_KEY` with your own Google Books API key. You can obtain one from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
+4. Generate a secret key and set the `SECRET_KEY` with the generated key.
+5. Create a `.env.frontend` file by copying the `.env.frontend.example` file.
+6. Generate a secret key and set the `NEXTAUTH_SECRET` with the generated key.
+7. Install [Docker Desktop](https://www.docker.com/products/docker-desktop) if you haven't already.
+8. Run `docker-compose up` to start the application.
+9. Visit `http://localhost:3000` to access the application.
+10. Enjoy searching for books!
 
