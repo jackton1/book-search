@@ -1,6 +1,6 @@
 module github.com/jackton1/book-search/infrastructure
 
-go 1.18
+go 1.22
 
 require (
 	github.com/aws/aws-cdk-go/awscdk/v2 v2.110.0
