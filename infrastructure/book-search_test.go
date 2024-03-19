@@ -14,13 +14,35 @@ func TestBookSearchStack(t *testing.T) {
 	app := awscdk.NewApp(nil)
 
 	// WHEN
-	stack := stacks.NewBookSearchStack(app, "MyStack", nil)
+	stack := stacks.NewBookSearchAppStack(app, "TestBookSearchAppStack", nil)
 
 	// THEN
 	template := assertions.Template_FromStack(stack, nil)
 
-	template.HasResourceProperties(jsii.String("AWS::SQS::Queue"), map[string]interface{}{
-		"VisibilityTimeout": 300,
+	// Test Log Group creation with correct retention policy
+	template.HasResourceProperties(jsii.String("AWS::Logs::LogGroup"), map[string]interface{}{
+		"RetentionInDays": assertions.Match(jsii.Number(30)),
 	})
-	template.ResourceCountIs(jsii.String("AWS::SNS::Topic"), jsii.Number(1))
+
+	// Test VPC exists
+	template.ResourceCountIs(jsii.String("AWS::EC2::VPC"), jsii.Number(1))
+
+	// Test ECS Cluster exists
+	template.ResourceCountIs(jsii.String("AWS::ECS::Cluster"), jsii.Number(1))
+
+	// Test ECS Task Role has correct AssumeRolePolicyDocument
+	template.HasResourceProperties(jsii.String("AWS::IAM::Role"), map[string]interface{}{
+		"AssumeRolePolicyDocument": map[string]interface{}{
+			"Statement": []interface{}{
+				map[string]interface{}{
+					"Action": "sts:AssumeRole",
+					"Effect": "Allow",
+					"Principal": map[string]interface{}{
+						"Service": "ecs-tasks.amazonaws.com",
+					},
+				},
+			},
+			"Version": "2012-10-17",
+		},
+	})
 }
