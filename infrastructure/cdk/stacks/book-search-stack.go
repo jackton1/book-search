@@ -110,7 +110,7 @@ func NewBookSearchAppStack(scope constructs.Construct, id string, props *BookSea
 			MemoryLimitMiB: jsii.Number(2048),
 			Cpu:            jsii.Number(512),
 			RuntimePlatform: &awsecs.RuntimePlatform{
-				CpuArchitecture: awsecs.CpuArchitecture_ARM64(),
+				CpuArchitecture: awsecs.CpuArchitecture_X86_64(),
 			},
 			TaskRole: ecsTaskRole,
 		},
@@ -226,7 +226,7 @@ func NewBookSearchAppStack(scope constructs.Construct, id string, props *BookSea
 			MemoryLimitMiB: jsii.Number(2048),
 			Cpu:            jsii.Number(512),
 			RuntimePlatform: &awsecs.RuntimePlatform{
-				CpuArchitecture: awsecs.CpuArchitecture_ARM64(),
+				CpuArchitecture: awsecs.CpuArchitecture_X86_64(),
 			},
 			TaskRole: ecsTaskRole,
 		},
