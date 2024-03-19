@@ -29,8 +29,7 @@ RUN pipenv install --deploy --ignore-pipfile
 COPY . /usr/src/app
 
 # Exposing the port the app runs on
-EXPOSE 8000
+EXPOSE 80
 
-# Running the application using the Python executable inside the virtual environment
-CMD ["pipenv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
+# Running the application using the Python executable inside the virtual environment using guicorn
+CMD ["pipenv", "run", "gunicorn", "main:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:80"]

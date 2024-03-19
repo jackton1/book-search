@@ -38,7 +38,7 @@ export default function Login() {
         introText="Please sign in to continue."
       />
       <form className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16" action={formAction}>
-        <FormInput id="email" name="email" type="email" placeholder="user@acme.com" label="Email Address"/>
+        <FormInput id="email" name="email" type="email" placeholder="user@acme.com" label="Email Address" autoComplete />
         <FormInput id="password" name="password" type="password" placeholder="" label="Password"/>
         <SubmitButton
           text="Sign In"

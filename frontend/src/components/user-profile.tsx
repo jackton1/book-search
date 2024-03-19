@@ -31,7 +31,7 @@ const UserProfile = ({ toggleDropdown, isDropdownOpen }: { toggleDropdown: () =>
             style={{ cursor: "pointer" }}
           >
             <div
-              className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer">
+              className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer hover:bg-gray-600">
               {getInitials(session.user?.name || "")}
             </div>
             {isDropdownOpen && (
@@ -39,7 +39,7 @@ const UserProfile = ({ toggleDropdown, isDropdownOpen }: { toggleDropdown: () =>
                 className="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10 cursor-pointer">
                 <Link
                   href="/logout"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
                 >
                   Sign out
                 </Link>

@@ -35,7 +35,7 @@ const BookList = ({ books }: { books: BookVolume[] }) => {
       initial={{ scaleY: 0, originY: 1 }}
       animate={{ scaleY: 1, originY: 0, transition: { duration: 0.6 } }}
       exit={{ scaleY: 0, originY: 1 }}
-      className="card m-5 w-full flex flex-wrap justify-center gap-4 p-4"
+      className="card m-5 w-full flex flex-wrap justify-center gap-4 p-3"
     >
       {books.map((book, index) => (
         <motion.div
@@ -46,7 +46,7 @@ const BookList = ({ books }: { books: BookVolume[] }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl hover:cursor-pointer h-full">
+          <div className="max-w-sm rounded overflow-hidden shadow-lg border-t hover:shadow-2xl hover:cursor-pointer h-full">
             <div className="flex justify-center">
               {book.volumeInfo?.imageLinks?.thumbnail ? (
                 <Image

@@ -66,10 +66,12 @@ export default function Books() {
       return;
     }
     setSearching(true);
+    setPage(0);
+    setData([]);
+    setFetchingMore(false);
     const formData = new FormData();
     formData.append("search", search);
     formData.append("page", page.toString());
-    setFetchingMore(false);
     formAction(formData);
   };
 
@@ -111,18 +113,18 @@ export default function Books() {
       ) : (
         <div
           className="flex flex-col items-center justify-center w-full bg-gray-100"
-          style={{ minHeight: "calc(100vh - 64px)" }}
+          style={{ minHeight: "calc(100vh - 94px)" }}
         >
           <div className="text-center p-5">
             <motion.h2
               className="text-3xl font-bold text-gray-800 mb-4"
-              key={search && searching || books.length > 0 ? "searchResults" : "welcomeMessage"}
+              key={searching ? "searchResults" : "welcomeMessage"}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
             >
-              {search && searching || books.length > 0 ? "Here are your search results:" : "Welcome to our library!"}
+              {searching ? "Here are your search results:" : "Welcome to BookSphere! 📚"}
             </motion.h2>
             {!searching && (
               <motion.p
@@ -132,7 +134,7 @@ export default function Books() {
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.5 }}
               >
-                Search for books and authors to get started.
+                Search for books or authors to get started.
               </motion.p>
             )}
             <motion.p
@@ -144,7 +146,7 @@ export default function Books() {
             >
               Data provided by{" "}
               <a
-                href="https://books.google.com/"
+                href="https://developers.google.com/books/docs/overview"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline text-blue-500"
@@ -183,7 +185,7 @@ export default function Books() {
                 value={search}
                 onChange={handleSearch}
                 className="block p-4 ps-10 w-full text-md text-gray-900 border border-gray-300 rounded-2xl bg-white focus:ring-0 focus:ring-offset-0 focus:bg-gray-50 shadow-lg"
-                placeholder="Search for books and authors..."
+                placeholder="Search for books or authors"
                 required
               />
               {search && (

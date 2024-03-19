@@ -1,0 +1,61 @@
+name: CDK Build and Deploy
+
+on:
+  push:
+    paths-ignore:
+      - README.md
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  aws_cdk:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: false
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: infrastructure/go.mod
+          cache-dependency-path: infrastructure/go.sum
+
+      - name: AWS CDK cache
+        uses: actions/cache@v4
+        id: aws-cdk-cache
+        with:
+          path: infrastructure/cdk.out
+          key: ${{ runner.os }}-cdk-${{ hashFiles('infrastructure/cdk.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cdk-
+
+      - name: Install dependencies
+        working-directory: infrastructure
+        run: |
+          go mod tidy
+          go mod download
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_TO_ASSUME }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: cdk deploy
+        uses: tj-actions/aws-cdk@v4
+        working-directory: infrastructure
+        with:
+          cdk_subcommand: deploy
+          cdk_extra_args: "--require-approval never"
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}

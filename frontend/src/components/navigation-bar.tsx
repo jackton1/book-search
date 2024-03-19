@@ -21,7 +21,7 @@ export default function NavigationBar() {
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   return (
-    <nav className="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
+    <nav className="bg-blue-600 text-white p-3 flex justify-between items-center shadow-md">
       <div className="flex items-center space-x-3">
         <Link href="/" className="flex items-center space-x-2">
           <Image
@@ -38,19 +38,6 @@ export default function NavigationBar() {
         isDropdownOpen={isDropdownOpen}
         toggleDropdown={toggleDropdown}
       />
-      <style jsx global>{`
-          body {
-              font-family: 'Arial', sans-serif;
-          }
-
-          nav a:hover {
-              text-decoration: underline;
-          }
-
-          .user-profile:hover {
-              border-color: rgba(255, 255, 255, 0.6);
-          }
-      `}</style>
     </nav>
   );
 }
