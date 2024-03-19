@@ -53,8 +53,8 @@ jobs:
 
       - name: cdk deploy
         uses: tj-actions/aws-cdk@v4
-        working-directory: infrastructure
         with:
+          working_dir: infrastructure
           cdk_subcommand: deploy
           cdk_extra_args: "--require-approval never"
         env:
