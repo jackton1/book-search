@@ -40,7 +40,7 @@ export default function ChangePassword() {
         className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
         action={formAction}
       >
-        <FormInput id="email" name="email" type="email" placeholder="user@acme.com" label="Email Address"/>
+        <FormInput id="email" name="email" type="email" placeholder="user@acme.com" label="Email Address" autoComplete />
         <SubmitButton
           text="Change Password"
           loadingText="Changing password..."

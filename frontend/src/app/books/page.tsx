@@ -66,10 +66,12 @@ export default function Books() {
       return;
     }
     setSearching(true);
+    setPage(0);
+    setData([]);
+    setFetchingMore(false);
     const formData = new FormData();
     formData.append("search", search);
     formData.append("page", page.toString());
-    setFetchingMore(false);
     formAction(formData);
   };
 
@@ -111,18 +113,18 @@ export default function Books() {
       ) : (
         <div
           className="flex flex-col items-center justify-center w-full bg-gray-100"
-          style={{ minHeight: "calc(100vh - 64px)" }}
+          style={{ minHeight: "calc(100vh - 94px)" }}
         >
           <div className="text-center p-5">
             <motion.h2
               className="text-3xl font-bold text-gray-800 mb-4"
-              key={search && searching ? "searchResults" : "welcomeMessage"}
+              key={searching ? "searchResults" : "welcomeMessage"}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
             >
-              {search && searching ? "Here are your search results:" : "Welcome to our library!"}
+              {searching ? "Here are your search results:" : "Welcome to our library!"}
             </motion.h2>
             {!searching && (
               <motion.p

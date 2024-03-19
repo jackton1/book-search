@@ -11,7 +11,7 @@ func main() {
 
 	app := awscdk.NewApp(nil)
 
-	stacks.NewBookSearchStack(app, "BookSearchStack", &stacks.BookSearchStackProps{
+	stacks.NewBookSearchAppStack(app, "BookSearchAppStack", &stacks.BookSearchAppStackProps{
 		StackProps: awscdk.StackProps{
 			Env: env(),
 		},
