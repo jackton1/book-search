@@ -59,3 +59,6 @@ jobs:
           cdk_extra_args: "--require-approval never"
         env:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
