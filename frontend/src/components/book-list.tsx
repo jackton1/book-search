@@ -46,7 +46,7 @@ const BookList = ({ books }: { books: BookVolume[] }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl hover:cursor-pointer h-full">
+          <div className="max-w-sm rounded overflow-hidden shadow-lg border-t hover:shadow-2xl hover:cursor-pointer h-full">
             <div className="flex justify-center">
               {book.volumeInfo?.imageLinks?.thumbnail ? (
                 <Image
