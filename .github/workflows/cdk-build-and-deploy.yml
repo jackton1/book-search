@@ -56,6 +56,7 @@ jobs:
         with:
           working_dir: infrastructure
           cdk_subcommand: deploy
+          cdk_stack: 'BookSearchAppStack'
           cdk_extra_args: "--require-approval never"
         env:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
