@@ -13,6 +13,11 @@ on:
 jobs:
   aws_cdk:
     runs-on: ubuntu-latest
+    if: |
+      (
+        github.actor != 'dependabot[bot]' &&
+        github.actor != 'dependabot'
+      )
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: false
