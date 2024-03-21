@@ -19,7 +19,7 @@ jobs:
       )
     timeout-minutes: 20
     concurrency:
-      group: ${{ github.workflow }}-${{ matrix.function }}-${{ github.ref }}
+      group: ${{ github.workflow }}-${{ matrix.service }}-${{ github.ref }}
       cancel-in-progress: true
     strategy:
       matrix:
